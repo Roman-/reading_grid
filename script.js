@@ -26,7 +26,7 @@ const wordMap = {
   herb:["🌿"], hole:["🕳"], hook:["🪝"], horn:["📯"],
   kite:["🪁"], knot:["🪢"], lamp:["🪔"], leaf:["🍃"],
   link:["🔗"], lion:["🦁"], lock:["🔒"], mail:["📨"],
-  mall:["🏬"], mate:["🧉"], meat:["🍖"], memo:["📝"],
+  mall:["🏬"], meat:["🍖"], memo:["📝"],
   milk:["🥛"], moon:["🌜","🎑"], nest:["🪹"], news:["🗞"],
   page:["📃"], palm:["🌴"], park:["🏞"], pear:["🍐"],
   pill:["💊"], pine:["🌲"], plug:["🔌"], rain:["🌧","☔️"],
@@ -36,7 +36,7 @@ const wordMap = {
   soda:["🥤"], sofa:["🛋"], star:["🌟"], surf:["🏄"],
   swan:["🦢"], swim:["🏊"], taco:["🌮"], tape:["📼"],
   taxi:["🚕"], wheel:["🛞"], tram:["🚊"], tree:["🌳"],
-  urn:["⚱️"], vase:["🏺"], vest:["🦺"], wand:["🪄"],
+  vase:["🏺"], vest:["🦺"], wand:["🪄"],
   wave:["🌊"], wind:["🌬"], wine:["🍷"], wing:["🪽"],
   wolf:["🐺"], worm:["🪱"], yarn:["🧶"], yoga:["🧘"],
   yoyo:["🪀"], alarm:["⏰"], apple:["🍎"], bacon:["🥓"],
@@ -113,6 +113,7 @@ async function makeMatrix(){
   const strokeW = +$('strokeW').value;
   const strokeC = $('strokeCol').value;
   const font    = $('fontSel').value;
+  const transparent = $('bgTrans').checked;
 
   ensureFont(font);
   /* wait until the font is actually available before drawing text */
@@ -142,6 +143,11 @@ async function makeMatrix(){
   const ctx = canvas.getContext('2d');
   ctx.scale(scale,scale);
   ctx.clearRect(0,0,canvas.width/scale,canvas.height/scale);
+  if(!transparent){
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0,0,canvas.width/scale,canvas.height/scale);
+    ctx.fillStyle = '#000';
+  }
 
   ctx.textAlign='center';
   ctx.textBaseline='middle';
