@@ -47,9 +47,13 @@
   </label>
 
 
-  <label>Grid colour <input id="strokeCol" type="color" value="#cccccc"></label>
+  <label>Grid colour <input id="strokeCol" type="color" value="#dddddd"></label>
 
-  <label><input id="bgTrans" type="checkbox" checked> Transparent background</label>
+  <label>Background opacity
+    <input id="bgAlpha" type="range" min="0" max="100" value="100">
+    <span id="alphaVal">100</span>%
+  </label>
+  <label>Background color <input id="bgColor" type="color" value="#c7f7fc"></label>
 
   <div id="canvasSize"></div>
 

@@ -47,7 +47,7 @@ const wordMap = {
   disco:["🪩"], dolls:["🎎"], donut:["🍩"], dress:["👗"],
   eagle:["🦅"], earth:["🌏"], ferry:["⛴"],
   fries:["🍟"], fuel:["⛽️"], gear:["⚙️"], goose:["🪿"],
-  hippo:["🦛"], honey:["🍯"], horse:["🐎"], inbox:["📥"],
+  hippo:["🦛"], honey:["🍯"], horse:["🐎"],
   juice:["🧃"], koala:["🐨"], lemon:["🍋"], llama:["🦙"],
   lotus:["🪷"], mango:["🥭"], maple:["🍁"], medal:["🎖"],
   melon:["🍈"], money:["💸"], moose:["🫎"], mouse:["🐁"],
@@ -77,6 +77,7 @@ rngLabel($('emojiSize'),'emojiVal');
 rngLabel($('labelSize'),'labelVal');
 rngLabel($('padding'),'padVal');
 rngLabel($('strokeW'),'strokeVal');
+rngLabel($('bgAlpha'),'alphaVal');
 
 let dlCounter = 1;
 
@@ -113,7 +114,8 @@ async function makeMatrix(){
   const strokeW = +$('strokeW').value;
   const strokeC = $('strokeCol').value;
   const font    = $('fontSel').value;
-  const transparent = $('bgTrans').checked;
+  const bgAlpha = +$('bgAlpha').value / 100;
+  const bgColor = $('bgColor').value;
 
   ensureFont(font);
   /* wait until the font is actually available before drawing text */
@@ -143,11 +145,14 @@ async function makeMatrix(){
   const ctx = canvas.getContext('2d');
   ctx.scale(scale,scale);
   ctx.clearRect(0,0,canvas.width/scale,canvas.height/scale);
-  if(!transparent){
-    ctx.fillStyle = '#fff';
+  if(bgAlpha>0){
+    ctx.save();
+    ctx.globalAlpha = bgAlpha;
+    ctx.fillStyle = bgColor;
     ctx.fillRect(0,0,canvas.width/scale,canvas.height/scale);
-    ctx.fillStyle = '#000';
+    ctx.restore();
   }
+  ctx.fillStyle = '#000';
 
   ctx.textAlign='center';
   ctx.textBaseline='middle';
