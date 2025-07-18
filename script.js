@@ -78,6 +78,8 @@ rngLabel($('labelSize'),'labelVal');
 rngLabel($('padding'),'padVal');
 rngLabel($('strokeW'),'strokeVal');
 
+let dlCounter = 1;
+
 function ensureFont(family){
   const id='gfont-'+family.replace(/\s+/g,'-');
   if(!document.getElementById(id)){
@@ -104,7 +106,6 @@ const shuffle = a => {
 async function makeMatrix(){
   const cols = +$('cols').value;
   const rows = +$('rows').value;
-  const maxL = +$('maxLen').value||0;
 
   const emojiPx = +$('emojiSize').value;
   const labelPx = +$('labelSize').value;
@@ -117,7 +118,7 @@ async function makeMatrix(){
   /* wait until the font is actually available before drawing text */
   await document.fonts.load(`${labelPx}px "${font}"`);
 
-  const available = Object.keys(wordMap).filter(w=>!maxL || w.length<=maxL);
+  const available = Object.keys(wordMap);
   const needed = cols*rows;
   if(available.length < needed){
     alert('Not enough words to fill matrix without duplicates');
@@ -136,6 +137,7 @@ async function makeMatrix(){
   canvas.height = rows*cellH*scale;
   canvas.style.width  = cols*cellW + 'px';
   canvas.style.height = rows*cellH + 'px';
+  $('canvasSize').textContent = `${cols*cellW} x ${rows*cellH}`;
 
   const ctx = canvas.getContext('2d');
   ctx.scale(scale,scale);
@@ -172,10 +174,11 @@ async function makeMatrix(){
   }
 
   /* Download button */
-  $('download').onclick = ()=>{
-    const link=document.createElement('a');
-    link.download='word-matrix.png';
-    link.href=canvas.toDataURL('image/png');
+  $('download').onclick = () => {
+    const link = document.createElement('a');
+    link.download = `word_grid_${cols}x${rows}_${String(dlCounter).padStart(4,'0')}.png`;
+    link.href = canvas.toDataURL('image/png');
+    dlCounter++;
     link.click();
   };
 }
