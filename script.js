@@ -63,7 +63,7 @@ const wordMap = {
   snail:["🐌"], snake:["🐍"], socks:["🧦"], spoon:["🥄"],
   squid:["🦑"], steak:["🥩"], store:["🏪"], storm:["⛈"],
   sunny:["🌤"], sushi:["🍣"], teddy:["🧸"], tent:["⛺️"],
-  tiger:["🐅"], toast:["🥂"], tools:["🛠"], tower:["🗼"],
+  tiger:["🐅"], tools:["🛠"], tower:["🗼"],
   train:["🚆"], trash:["🗑"], truck:["🚚"], tulip:["🌷"],
   whale:["🐋"], yacht:["🛥"], zebra:["🦓"]
 };
@@ -90,6 +90,13 @@ function ensureFont(family){
 
 /* Random pick */
 const choice = a => a[Math.random()*a.length|0];
+const shuffle = a => {
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+};
 
 /* -----------------------------------------------------------
    3.  Canvas generator
@@ -110,7 +117,13 @@ async function makeMatrix(){
   /* wait until the font is actually available before drawing text */
   await document.fonts.load(`${labelPx}px "${font}"`);
 
-  const words = Object.keys(wordMap).filter(w=>!maxL || w.length<=maxL);
+  const available = Object.keys(wordMap).filter(w=>!maxL || w.length<=maxL);
+  const needed = cols*rows;
+  if(available.length < needed){
+    alert('Not enough words to fill matrix without duplicates');
+    return;
+  }
+  const words = shuffle([...available]).slice(0, needed);
 
   /* Cell dimensions: emoji + label + paddings top/bottom */
   const cellW = emojiPx + pad*2;
@@ -132,12 +145,13 @@ async function makeMatrix(){
   ctx.textBaseline='middle';
 
   /* Draw grid + content */
+  let idx=0;
   for(let r=0;r<rows;r++){
     for(let c=0;c<cols;c++){
       const x=c*cellW, y=r*cellH;
       const cx=x+cellW/2, cy=y+pad+emojiPx/2;
 
-      const word=choice(words);
+      const word=words[idx++];
       const emo =choice(wordMap[word]);
 
       /* border */
