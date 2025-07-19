@@ -17,22 +17,22 @@
     <legend>Layout</legend>
     <label>Columns  <input id="cols" type="number" min="1" max="20" value="4"></label>
     <label>Rows     <input id="rows" type="number" min="1" max="20" value="3"></label>
-    <label>Padding (px)
+    <div class="range-wrap">
+      <label for="padding">Padding (px): <span id="padVal">45</span></label>
       <input id="padding" type="range" min="0" max="90" value="45">
-      <span id="padVal">45</span>
-    </label>
+    </div>
   </fieldset>
 
   <fieldset>
     <legend>Fonts</legend>
-    <label>Emoji size (px)
+    <div class="range-wrap">
+      <label for="emojiSize">Emoji size (px): <span id="emojiVal">150</span></label>
       <input id="emojiSize" type="range" min="20" max="280" value="150">
-      <span id="emojiVal">150</span>
-    </label>
-    <label>Label size (px)
+    </div>
+    <div class="range-wrap">
+      <label for="labelSize">Label size (px): <span id="labelVal">55</span></label>
       <input id="labelSize" type="range" min="10" max="100" value="55">
-      <span id="labelVal">55</span>
-    </label>
+    </div>
     <label>Label font
       <select id="fontSel">
         <option value="Roboto" style="font-family:'Roboto',sans-serif">Roboto</option>
@@ -46,18 +46,18 @@
 
   <fieldset>
     <legend>Lines</legend>
-    <label>Grid width (px)
+    <div class="range-wrap">
+      <label for="gridStrokeW">Grid width (px): <span id="gridStrokeVal">2</span></label>
       <input id="gridStrokeW" type="range" min="0" max="20" value="2">
-      <span id="gridStrokeVal">2</span>
-    </label>
+    </div>
     <div class="color-row">
       <label for="gridStrokeCol">Grid color</label>
       <input id="gridStrokeCol" type="color" value="#dddddd">
     </div>
-    <label>Border width (px)
+    <div class="range-wrap">
+      <label for="borderStrokeW">Border width (px): <span id="borderStrokeVal">2</span></label>
       <input id="borderStrokeW" type="range" min="0" max="20" value="2">
-      <span id="borderStrokeVal">2</span>
-    </label>
+    </div>
     <div class="color-row">
       <label for="borderStrokeCol">Border color</label>
       <input id="borderStrokeCol" type="color" value="#000000">
@@ -66,10 +66,10 @@
 
   <fieldset>
     <legend>Background</legend>
-    <label>Opacity
+    <div class="range-wrap">
+      <label for="bgAlpha">Opacity: <span id="alphaVal">100</span>%</label>
       <input id="bgAlpha" type="range" min="0" max="100" value="100">
-      <span id="alphaVal">100</span>%
-    </label>
+    </div>
     <div class="color-row">
       <label for="bgColor">Background color</label>
       <input id="bgColor" type="color" value="#c7f7fc">
