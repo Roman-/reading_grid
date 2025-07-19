@@ -1,75 +1,5 @@
 /* -----------------------------------------------------------
-   1.  Fixed word-emoji dictionary
-----------------------------------------------------------------*/
-const wordMap = {
-  ant:["🐜"],  ape:["🐒"], art:["🎨"], axe:["🪓"],
-  bag:["👜","🛍️"], bat:["🦇"], bed:["🛌"], bee:["🐝"],
-  bug:["🐛"], bus:["🚍"], cap:["🧢"], car:["🚗"],
-  cat:["🐈"], cow:["🐄"], dog:["🐕"], egg:["🥚"],
-  fan:["🪭"], fly:["🪰"], fog:["🌁"], fox:["🦊"],
-  gem:["💎"], hat:["👒"], ice:["🧊"], jar:["🫙"],
-  key:["🔑"], log:["🪵"], map:["🗺"], owl:["🦉"],
-  pen:["🖊","✒️"], pie:["🥧"], pig:["🐖"], pin:["📍"],
-  ram:["🐏"], rat:["🐀"], row:["🚣"], saw:["🪚"],
-  sun:["☀️"], ski:["🎿"], tag:["🏷"], tea:["🍵"],
-  van:["🚐"], web:["🕸"], yam:["🍠"], bank:["🏦"],
-  bath:["🛀"], bear:["🐻"], bell:["🛎"], bird:["🐦"],
-  bolt:["🔩"], bone:["🦴"], book:["📕"], boot:["🥾"],
-  bowl:["🥣"], bulb:["💡"], cake:["🍰","🎂"],
-  card:["💳"], cart:["🛒"], city:["🏙"], coat:["🧥"],
-  coin:["🪙"], comb:["🪮"], corn:["🌽"], crab:["🦀"],
-  dart:["🎯"], date:["📅"], deer:["🦌"], dice:["🎲"],
-  dino:["🦖"], disk:["💽"], door:["🚪"], dove:["🕊"],
-  drop:["💧"], drum:["🪘","🥁"], duck:["🦆"],
-  film:["🎥","🎬"], fire:["🔥"], fish:["🐟"], frog:["🐸"],
-  gift:["🎁"], goal:["🥅"], goat:["🐐"], gold:["🥇"],
-  herb:["🌿"], hole:["🕳"], hook:["🪝"], horn:["📯"],
-  kite:["🪁"], knot:["🪢"], lamp:["🪔"], leaf:["🍃"],
-  link:["🔗"], lion:["🦁"], lock:["🔒"], mail:["📨"],
-  mall:["🏬"], meat:["🍖"], memo:["📝"],
-  milk:["🥛"], moon:["🌜","🎑"], nest:["🪹"],
-  page:["📃"], palm:["🌴"], park:["🏞"], pear:["🍐"],
-  pill:["💊"], pine:["🌲"], plug:["🔌"], rain:["🌧","☔️"],
-  rice:["🍚"], ring:["💍"], rock:["🪨"], rose:["🌹"],
-  salt:["🧂"], sari:["🥻"], seat:["💺"], ship:["🚢"],
-  shoe:["👞"], sled:["🛷"], snow:["🌨"], soap:["🧼"],
-  soda:["🥤"], sofa:["🛋"], star:["🌟"], surf:["🏄"],
-  swan:["🦢"], swim:["🏊"], taco:["🌮"],
-  taxi:["🚕"], wheel:["🛞"], tram:["🚊"], tree:["🌳"],
-  vase:["🏺"], vest:["🦺"], wand:["🪄"],
-  wave:["🌊"], wind:["🌬"], wine:["🍷"], wing:["🪽"],
-  wolf:["🐺"], worm:["🪱"], yarn:["🧶"], yoga:["🧘"],
-  yoyo:["🪀"], alarm:["⏰"], apple:["🍎"], bacon:["🥓"],
-  bagel:["🥯"], beach:["🏖"], beans:["🫘"],
-  bison:["🦬"], bread:["🍞"], brick:["🧱"], broom:["🧹"],
-  brush:["🖌"], camel:["🐫"], candy:["🍬"], chair:["🪑"],
-  chick:["🐤"], clock:["🕰"], coral:["🪸"], crown:["👑"],
-  disco:["🪩"], dolls:["🎎"], donut:["🍩"], dress:["👗"],
-  eagle:["🦅"], earth:["🌏"], ferry:["⛴"],
-  fries:["🍟"], fuel:["⛽️"], gear:["⚙️"], goose:["🪿"],
-  hippo:["🦛"], honey:["🍯"], horse:["🐎"],
-  juice:["🧃"], koala:["🐨"], lemon:["🍋"], llama:["🦙"],
-  lotus:["🪷"], mango:["🥭"], maple:["🍁"], medal:["🎖"],
-  melon:["🍈"], money:["💸"], moose:["🫎"], mouse:["🐁"],
-  music:["🎼"], night:["🌃"], olive:["🫒"], onion:["🧅"],
-  otter:["🦦"], panda:["🐼"], pants:["👖"], paper:["📄"],
-  party:["🎉"], pasta:["🍝"], peach:["🍑"], phone:["📞"],
-  piano:["🎹"], pizza:["🍕"], plant:["🪴"], plate:["🍽"],
-  pouch:["👝"], purse:["👛"], radio:["📻"], razor:["🪒"],
-  rhino:["🦏"], roach:["🪳"], rugby:["🏉"], ruler:["📏"],
-  salad:["🥗"], scarf:["🧣"], shark:["🦈"], sheaf:["🌾"],
-  sheep:["🐑"], shell:["🐚"], shirt:["👔"], siren:["🚨"],
-  skunk:["🦨"], sleep:["🛌"], slide:["🛝"], sloth:["🦥"],
-  snail:["🐌"], snake:["🐍"], socks:["🧦"], spoon:["🥄"],
-  squid:["🦑"], steak:["🥩"], store:["🏪"], storm:["⛈"],
-  sunny:["🌤"], sushi:["🍣"], teddy:["🧸"], tent:["⛺️"],
-  tiger:["🐅"], tower:["🗼"],
-  train:["🚆"], trash:["🗑"], truck:["🚚"], tulip:["🌷"],
-  whale:["🐋"], yacht:["🛥"], zebra:["🦓"]
-};
-
-/* -----------------------------------------------------------
-   2.  Helper shortcuts
+   Helper shortcuts
 ----------------------------------------------------------------*/
 const $ = id => document.getElementById(id);
 const rngLabel = (rng,lbl)=>rng.addEventListener('input',()=>$(lbl).textContent=rng.value);
@@ -103,7 +33,7 @@ const shuffle = a => {
 };
 
 /* -----------------------------------------------------------
-   3.  Canvas generator
+   Canvas generator
 ----------------------------------------------------------------*/
 async function makeMatrix(){
   const cols = +$('cols').value;
@@ -215,7 +145,7 @@ async function makeMatrix(){
 }
 
 /* -----------------------------------------------------------
-   4.  UI wiring
+   UI wiring
 ----------------------------------------------------------------*/
 $('generate').onclick=makeMatrix;
 document.querySelectorAll('#controls input, #controls select')
