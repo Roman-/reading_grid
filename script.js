@@ -10,6 +10,14 @@ rngLabel($('gridStrokeW'),'gridStrokeVal');
 rngLabel($('borderStrokeW'),'borderStrokeVal');
 rngLabel($('bgAlpha'),'alphaVal');
 
+const ALL_FONTS=['Roboto','Fredoka','Comic Neue','Baloo 2','Gloria Hallelujah'];
+ALL_FONTS.forEach(f=>{ensureFont(f);document.fonts.load(`16px "${f}"`);});
+
+const fontSel=$('fontSel');
+function updateFontSelStyle(){fontSel.style.fontFamily=`"${fontSel.value}", sans-serif`;}
+fontSel.addEventListener('change',updateFontSelStyle);
+updateFontSelStyle();
+
 let dlCounter = 1;
 
 function ensureFont(family){
@@ -147,8 +155,12 @@ async function makeMatrix(){
 /* -----------------------------------------------------------
    UI wiring
 ----------------------------------------------------------------*/
-$('generate').onclick=makeMatrix;
-document.querySelectorAll('#controls input, #controls select')
-        .forEach(el=>el.addEventListener('change',makeMatrix));
+let drawQueue=Promise.resolve();
+function scheduleMatrix(){ drawQueue=drawQueue.then(()=>makeMatrix()); }
 
-makeMatrix(); /* initial draw */
+$('generate').onclick=scheduleMatrix;
+document.querySelectorAll('#controls input, #controls select')
+        .forEach(el=>el.addEventListener('change',scheduleMatrix));
+
+scheduleMatrix(); /* initial draw */
+
