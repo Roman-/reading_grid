@@ -57,6 +57,7 @@ async function makeMatrix(){
   const font    = $('fontSel').value;
   const bgAlpha = +$('bgAlpha').value / 100;
   const bgColor = $('bgColor').value;
+  const textOutline = $('textOutline').checked;
 
   ensureFont(font);
   /* wait until the font is actually available before drawing text */
@@ -112,8 +113,15 @@ async function makeMatrix(){
       ctx.fillText(emo,cx,cy);
 
       /* label */
+      const labelY = y + emojiPx + pad*2 + labelPx/2;
+      if(textOutline){
+        ctx.font=`bold ${labelPx}px "${font}", sans-serif`;
+        ctx.fillStyle='#fff';
+        ctx.fillText(word,cx,labelY);
+      }
       ctx.font=`${labelPx}px "${font}", sans-serif`;
-      ctx.fillText(word,cx,y+emojiPx+pad*2+labelPx/2);
+      ctx.fillStyle='#000';
+      ctx.fillText(word,cx,labelY);
     }
   }
 
