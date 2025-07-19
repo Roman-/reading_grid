@@ -34,7 +34,7 @@ const wordMap = {
   swan:["🦢"], swim:["🏊"], taco:["🌮"],
   taxi:["🚕"], wheel:["🛞"], tram:["🚊"], tree:["🌳"],
   vase:["🏺"], vest:["🦺"], wand:["🪄"],
-  wave:["🌊"], wind:["🌬"], wine:["🍷"], wing:["🪽"],
+  wave:["🌊"], wind:["🌬"], wing:["🪽"],
   wolf:["🐺"], worm:["🪱"], yarn:["🧶"], yoga:["🧘"],
   yoyo:["🪀"], alarm:["⏰"], apple:["🍎"], bacon:["🥓"],
   bagel:["🥯"], beach:["🏖"], beans:["🫘"],
