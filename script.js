@@ -40,7 +40,7 @@ const wordMap = {
   wave:["🌊"], wind:["🌬"], wine:["🍷"], wing:["🪽"],
   wolf:["🐺"], worm:["🪱"], yarn:["🧶"], yoga:["🧘"],
   yoyo:["🪀"], alarm:["⏰"], apple:["🍎"], bacon:["🥓"],
-  bagel:["🥯"], banjo:["🪕"], beach:["🏖"], beans:["🫘"],
+  bagel:["🥯"], beach:["🏖"], beans:["🫘"],
   bison:["🦬"], bread:["🍞"], brick:["🧱"], broom:["🧹"],
   brush:["🖌"], camel:["🐫"], candy:["🍬"], chair:["🪑"],
   chick:["🐤"], clock:["🕰"], coral:["🪸"], crown:["👑"],
@@ -63,7 +63,7 @@ const wordMap = {
   snail:["🐌"], snake:["🐍"], socks:["🧦"], spoon:["🥄"],
   squid:["🦑"], steak:["🥩"], store:["🏪"], storm:["⛈"],
   sunny:["🌤"], sushi:["🍣"], teddy:["🧸"], tent:["⛺️"],
-  tiger:["🐅"], tools:["🛠"], tower:["🗼"],
+  tiger:["🐅"], tower:["🗼"],
   train:["🚆"], trash:["🗑"], truck:["🚚"], tulip:["🌷"],
   whale:["🐋"], yacht:["🛥"], zebra:["🦓"]
 };
