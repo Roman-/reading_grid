@@ -13,62 +13,68 @@
 <h1>Labelled Emoji Grid generator</h1>
 
 <section id="controls">
-  <label>Columns  <input id="cols" type="number" min="1" max="20" value="4"></label>
-  <label>Rows     <input id="rows" type="number" min="1" max="20" value="3"></label>
+  <fieldset>
+    <legend>Layout</legend>
+    <label>Columns  <input id="cols" type="number" min="1" max="20" value="4"></label>
+    <label>Rows     <input id="rows" type="number" min="1" max="20" value="3"></label>
+    <label>Padding (px)
+      <input id="padding" type="range" min="0" max="90" value="45">
+      <span id="padVal">45</span>
+    </label>
+  </fieldset>
 
-  <label>Emoji size (px)
-    <input id="emojiSize" type="range" min="20" max="280" value="150">
-    <span id="emojiVal">150</span>
-  </label>
+  <fieldset>
+    <legend>Fonts</legend>
+    <label>Emoji size (px)
+      <input id="emojiSize" type="range" min="20" max="280" value="150">
+      <span id="emojiVal">150</span>
+    </label>
+    <label>Label size (px)
+      <input id="labelSize" type="range" min="10" max="100" value="55">
+      <span id="labelVal">55</span>
+    </label>
+    <label>Label font
+      <select id="fontSel">
+        <option>Roboto</option>
+        <option>Fredoka</option>
+        <option>Comic Neue</option>
+        <option>Baloo 2</option>
+        <option>Gloria Hallelujah</option>
+      </select>
+    </label>
+  </fieldset>
 
-  <label>Label size (px)
-    <input id="labelSize" type="range" min="10" max="100" value="55">
-    <span id="labelVal">55</span>
-  </label>
+  <fieldset>
+    <legend>Lines</legend>
+    <label>Grid width (px)
+      <input id="gridStrokeW" type="range" min="0" max="20" value="2">
+      <span id="gridStrokeVal">2</span>
+    </label>
+    <div class="color-row">
+      <label for="gridStrokeCol">Grid color</label>
+      <input id="gridStrokeCol" type="color" value="#dddddd">
+    </div>
+    <label>Border width (px)
+      <input id="borderStrokeW" type="range" min="0" max="20" value="2">
+      <span id="borderStrokeVal">2</span>
+    </label>
+    <div class="color-row">
+      <label for="borderStrokeCol">Border color</label>
+      <input id="borderStrokeCol" type="color" value="#000000">
+    </div>
+  </fieldset>
 
-  <label>Label font 
-    <select id="fontSel">
-      <option>Roboto</option>
-      <option>Fredoka</option>
-      <option>Comic Neue</option>
-      <option>Baloo 2</option>
-      <option>Gloria Hallelujah</option>
-    </select>
-  </label>
-
-  <label>Padding (px)
-    <input id="padding" type="range" min="0" max="90" value="45">
-    <span id="padVal">45</span>
-  </label>
-
-  <label>Grid width (px)
-    <input id="gridStrokeW" type="range" min="0" max="20" value="2">
-    <span id="gridStrokeVal">2</span>
-  </label>
-
-  <div class="color-row">
-    <label for="gridStrokeCol">Grid color</label>
-    <input id="gridStrokeCol" type="color" value="#dddddd">
-  </div>
-
-  <label>Border width (px)
-    <input id="borderStrokeW" type="range" min="0" max="20" value="2">
-    <span id="borderStrokeVal">2</span>
-  </label>
-
-  <div class="color-row">
-    <label for="borderStrokeCol">Border color</label>
-    <input id="borderStrokeCol" type="color" value="#000000">
-  </div>
-
-  <label>Background opacity
-    <input id="bgAlpha" type="range" min="0" max="100" value="100">
-    <span id="alphaVal">100</span>%
-  </label>
-  <div class="color-row">
-    <label for="bgColor">Background color</label>
-    <input id="bgColor" type="color" value="#c7f7fc">
-  </div>
+  <fieldset>
+    <legend>Background</legend>
+    <label>Opacity
+      <input id="bgAlpha" type="range" min="0" max="100" value="100">
+      <span id="alphaVal">100</span>%
+    </label>
+    <div class="color-row">
+      <label for="bgColor">Background color</label>
+      <input id="bgColor" type="color" value="#c7f7fc">
+    </div>
+  </fieldset>
 
   <div id="canvasSize"></div>
 
