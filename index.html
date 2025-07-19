@@ -41,15 +41,24 @@
     <span id="padVal">45</span>
   </label>
 
-  <label>Grid stroke-width (px) 
-    <input id="strokeW" type="range" min="0" max="10" value="2">
-    <span id="strokeVal">2</span>
+  <label>Grid width (px)
+    <input id="gridStrokeW" type="range" min="0" max="20" value="2">
+    <span id="gridStrokeVal">2</span>
   </label>
 
+  <div class="color-row">
+    <label for="gridStrokeCol">Grid color</label>
+    <input id="gridStrokeCol" type="color" value="#dddddd">
+  </div>
+
+  <label>Border width (px)
+    <input id="borderStrokeW" type="range" min="0" max="20" value="2">
+    <span id="borderStrokeVal">2</span>
+  </label>
 
   <div class="color-row">
-    <label for="strokeCol">Grid colour</label>
-    <input id="strokeCol" type="color" value="#dddddd">
+    <label for="borderStrokeCol">Border color</label>
+    <input id="borderStrokeCol" type="color" value="#000000">
   </div>
 
   <label>Background opacity

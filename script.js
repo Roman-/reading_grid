@@ -76,7 +76,8 @@ const rngLabel = (rng,lbl)=>rng.addEventListener('input',()=>$(lbl).textContent=
 rngLabel($('emojiSize'),'emojiVal');
 rngLabel($('labelSize'),'labelVal');
 rngLabel($('padding'),'padVal');
-rngLabel($('strokeW'),'strokeVal');
+rngLabel($('gridStrokeW'),'gridStrokeVal');
+rngLabel($('borderStrokeW'),'borderStrokeVal');
 rngLabel($('bgAlpha'),'alphaVal');
 
 let dlCounter = 1;
@@ -111,8 +112,10 @@ async function makeMatrix(){
   const emojiPx = +$('emojiSize').value;
   const labelPx = +$('labelSize').value;
   const pad     = +$('padding').value;
-  const strokeW = +$('strokeW').value;
-  const strokeC = $('strokeCol').value;
+  const gridStrokeW  = +$('gridStrokeW').value;
+  const gridStrokeC  = $('gridStrokeCol').value;
+  const borderStrokeW = +$('borderStrokeW').value;
+  const borderStrokeC = $('borderStrokeCol').value;
   const font    = $('fontSel').value;
   const bgAlpha = +$('bgAlpha').value / 100;
   const bgColor = $('bgColor').value;
@@ -166,13 +169,6 @@ async function makeMatrix(){
       const word=words[idx++];
       const emo =choice(wordMap[word]);
 
-      /* border */
-      if(strokeW>0){
-        ctx.lineWidth=strokeW;
-        ctx.strokeStyle=strokeC;
-        ctx.strokeRect(x,y,cellW,cellH);
-      }
-
       /* emoji */
       ctx.font=`${emojiPx}px sans-serif`;
       ctx.fillText(emo,cx,cy);
@@ -181,6 +177,31 @@ async function makeMatrix(){
       ctx.font=`${labelPx}px "${font}", sans-serif`;
       ctx.fillText(word,cx,y+emojiPx+pad*2+labelPx/2);
     }
+  }
+
+  /* Grid lines */
+  if(gridStrokeW>0){
+    ctx.lineWidth=gridStrokeW;
+    ctx.strokeStyle=gridStrokeC;
+    ctx.beginPath();
+    for(let c=1;c<cols;c++){
+      const x=c*cellW;
+      ctx.moveTo(x,0);
+      ctx.lineTo(x,rows*cellH);
+    }
+    for(let r=1;r<rows;r++){
+      const y=r*cellH;
+      ctx.moveTo(0,y);
+      ctx.lineTo(cols*cellW,y);
+    }
+    ctx.stroke();
+  }
+
+  /* Outer border */
+  if(borderStrokeW>0){
+    ctx.lineWidth=borderStrokeW;
+    ctx.strokeStyle=borderStrokeC;
+    ctx.strokeRect(0,0,cols*cellW,rows*cellH);
   }
 
   /* Download button */
