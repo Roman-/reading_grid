@@ -139,7 +139,6 @@ async function makeMatrix(){
   canvas.width  = cols*cellW*scale;
   canvas.height = rows*cellH*scale;
   canvas.style.width  = cols*cellW + 'px';
-  canvas.style.height = rows*cellH + 'px';
   $('canvasSize').textContent = `${cols*cellW} x ${rows*cellH}`;
 
   const ctx = canvas.getContext('2d');
