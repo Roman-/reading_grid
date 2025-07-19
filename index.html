@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Canvas Emoji-Word Matrix</title>
+<title>Reading-encouragement Word Grid generator</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="style.css">
 <!-- Google-fonts preconnect -->
@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
-<h1>Emoji-Word Matrix (Canvas)</h1>
+<h1>Labelled Emoji Grid generator</h1>
 
 <section id="controls">
   <label>Columns  <input id="cols" type="number" min="1" max="20" value="4"></label>
@@ -47,13 +47,19 @@
   </label>
 
 
-  <label>Grid colour <input id="strokeCol" type="color" value="#dddddd"></label>
+  <div class="color-row">
+    <label for="strokeCol">Grid colour</label>
+    <input id="strokeCol" type="color" value="#dddddd">
+  </div>
 
   <label>Background opacity
     <input id="bgAlpha" type="range" min="0" max="100" value="100">
     <span id="alphaVal">100</span>%
   </label>
-  <label>Background color <input id="bgColor" type="color" value="#c7f7fc"></label>
+  <div class="color-row">
+    <label for="bgColor">Background color</label>
+    <input id="bgColor" type="color" value="#c7f7fc">
+  </div>
 
   <div id="canvasSize"></div>
 
