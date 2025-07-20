@@ -5,7 +5,6 @@ const $ = id => document.getElementById(id);
 const rngLabel = (rng,lbl)=>rng.addEventListener('input',()=>$(lbl).textContent=rng.value);
 rngLabel($('emojiSize'),'emojiVal');
 rngLabel($('labelSize'),'labelVal');
-rngLabel($('padding'),'padVal');
 rngLabel($('gridStrokeW'),'gridStrokeVal');
 rngLabel($('borderStrokeW'),'borderStrokeVal');
 rngLabel($('bgAlpha'),'alphaVal');
@@ -49,7 +48,10 @@ async function makeMatrix(){
 
   const emojiPx = +$('emojiSize').value;
   const labelPx = +$('labelSize').value;
-  const pad     = +$('padding').value;
+  const widthPx  = +$('width').value;
+  const heightPx = +$('height').value;
+  const padX = (widthPx/cols - emojiPx)/2;
+  const padY = (heightPx/rows - emojiPx - labelPx)/3;
   const gridStrokeW  = +$('gridStrokeW').value;
   const gridStrokeC  = $('gridStrokeCol').value;
   const borderStrokeW = +$('borderStrokeW').value;
@@ -72,16 +74,16 @@ async function makeMatrix(){
   const words = shuffle([...available]).slice(0, needed);
 
   /* Cell dimensions: emoji + label + paddings top/bottom */
-  const cellW = emojiPx + pad*2;
-  const cellH = emojiPx + labelPx + pad*3;
+  const cellW = emojiPx + padX*2;
+  const cellH = emojiPx + labelPx + padY*3;
 
   /* Large internal canvas size */
   const canvas = $('matrix');
   const scale  = window.devicePixelRatio||1;
-  canvas.width  = cols*cellW*scale;
-  canvas.height = rows*cellH*scale;
-  canvas.style.width  = cols*cellW + 'px';
-  $('canvasSize').textContent = `${cols*cellW} x ${rows*cellH}`;
+  canvas.width  = widthPx*scale;
+  canvas.height = heightPx*scale;
+  canvas.style.width  = widthPx + 'px';
+  canvas.style.height = heightPx + 'px';
 
   const ctx = canvas.getContext('2d');
   ctx.scale(scale,scale);
@@ -103,7 +105,7 @@ async function makeMatrix(){
   for(let r=0;r<rows;r++){
     for(let c=0;c<cols;c++){
       const x=c*cellW, y=r*cellH;
-      const cx=x+cellW/2, cy=y+pad+emojiPx/2;
+      const cx=x+cellW/2, cy=y+padY+emojiPx/2;
 
       const word=words[idx++];
       const emo =choice(wordMap[word]);
@@ -113,7 +115,7 @@ async function makeMatrix(){
       ctx.fillText(emo,cx,cy);
 
       /* label */
-      const labelY = y + emojiPx + pad*2 + labelPx/2;
+      const labelY = y + emojiPx + padY*2 + labelPx/2;
       if(textOutline){
         ctx.font=`bold ${labelPx}px "${font}", sans-serif`;
         ctx.fillStyle='#fff';
