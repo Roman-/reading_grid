@@ -156,7 +156,14 @@ async function makeMatrix(){
   $('download').onclick = () => {
     const link = document.createElement('a');
     link.download = `word_grid_${cols}x${rows}_${String(dlCounter).padStart(4,'0')}.png`;
-    link.href = canvas.toDataURL('image/png');
+
+    /* Flatten high-DPI canvas to the user specified dimensions */
+    const exportCanvas = document.createElement('canvas');
+    exportCanvas.width  = widthPx;
+    exportCanvas.height = heightPx;
+    exportCanvas.getContext('2d').drawImage(canvas, 0, 0, widthPx, heightPx);
+
+    link.href = exportCanvas.toDataURL('image/png');
     dlCounter++;
     link.click();
   };
