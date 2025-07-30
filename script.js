@@ -42,6 +42,8 @@ const shuffle = a => {
 /* -----------------------------------------------------------
    Canvas generator
 ----------------------------------------------------------------*/
+const LABEL_COLORS = ['#007c8f', '#580078', '#8f4300', '#5d8f00', '#008f4a'];
+
 async function makeMatrix(){
   const cols = +$('cols').value;
   const rows = +$('rows').value;
@@ -62,6 +64,7 @@ async function makeMatrix(){
   const bgColor = $('bgColor').value;
   const textOutline = $('textOutline').checked;
   const labelBold = $('labelBold').checked;
+  const colorfulText = $('colorfulText').checked;
 
   ensureFont(font);
   /* wait until the font is actually available before drawing text */
@@ -128,7 +131,7 @@ async function makeMatrix(){
         ctx.fillText(label,cx,labelY);
       }
       ctx.font=`${labelBold?'bold ':''}${labelPx}px "${font}", sans-serif`;
-      ctx.fillStyle='#000';
+      ctx.fillStyle = colorfulText ? choice(LABEL_COLORS) : '#000';
       ctx.fillText(label,cx,labelY);
     }
   }
