@@ -42,7 +42,13 @@ const shuffle = a => {
 /* -----------------------------------------------------------
    Canvas generator
 ----------------------------------------------------------------*/
-const LABEL_COLORS = ['#007c8f', '#580078', '#8f4300', '#5d8f00', '#008f4a'];
+const LABEL_COLORS = [
+  '#007c8f',
+  '#580078',
+  '#d67a02',
+  '#93a100',
+  '#ab0a4d',
+  '#008f4a'];
 
 async function makeMatrix(){
   const cols = +$('cols').value;
@@ -107,6 +113,7 @@ async function makeMatrix(){
 
   /* Draw grid + content */
   let idx=0;
+  const startColorIdx = Math.floor(Math.random() * LABEL_COLORS.length);
   for(let r=0;r<rows;r++){
     for(let c=0;c<cols;c++){
       const x=c*cellW, y=r*cellH;
@@ -131,7 +138,8 @@ async function makeMatrix(){
         ctx.fillText(label,cx,labelY);
       }
       ctx.font=`${labelBold?'bold ':''}${labelPx}px "${font}", sans-serif`;
-      ctx.fillStyle = colorfulText ? choice(LABEL_COLORS) : '#000';
+      const colourIdx = (startColorIdx + r + c) % LABEL_COLORS.length;
+      ctx.fillStyle   = colorfulText ? LABEL_COLORS[colourIdx] : '#000';
       ctx.fillText(label,cx,labelY);
     }
   }
