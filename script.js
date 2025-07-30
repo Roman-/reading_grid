@@ -60,6 +60,7 @@ async function makeMatrix(){
   const bgAlpha = +$('bgAlpha').value / 100;
   const bgColor = $('bgColor').value;
   const textOutline = $('textOutline').checked;
+  const labelBold = $('labelBold').checked;
 
   ensureFont(font);
   /* wait until the font is actually available before drawing text */
@@ -121,7 +122,7 @@ async function makeMatrix(){
         ctx.fillStyle='#fff';
         ctx.fillText(word,cx,labelY);
       }
-      ctx.font=`${labelPx}px "${font}", sans-serif`;
+      ctx.font=`${labelBold?'bold ':''}${labelPx}px "${font}", sans-serif`;
       ctx.fillStyle='#000';
       ctx.fillText(word,cx,labelY);
     }
