@@ -57,6 +57,7 @@ async function makeMatrix(){
   const borderStrokeW = +$('borderStrokeW').value;
   const borderStrokeC = $('borderStrokeCol').value;
   const font    = $('fontSel').value;
+  const caps    = $('capsSel').value;
   const bgAlpha = +$('bgAlpha').value / 100;
   const bgColor = $('bgColor').value;
   const textOutline = $('textOutline').checked;
@@ -110,6 +111,10 @@ async function makeMatrix(){
 
       const word=words[idx++];
       const emo =choice(wordMap[word]);
+      let label=word;
+      if(caps==='upper')      label=word.toUpperCase();
+      else if(caps==='lower') label=word.toLowerCase();
+      else if(caps==='cap')   label=word.charAt(0).toUpperCase()+word.slice(1).toLowerCase();
 
       /* emoji */
       ctx.font=`${emojiPx}px sans-serif`;
@@ -120,11 +125,11 @@ async function makeMatrix(){
       if(textOutline){
         ctx.font=`bold ${labelPx}px "${font}", sans-serif`;
         ctx.fillStyle='#fff';
-        ctx.fillText(word,cx,labelY);
+        ctx.fillText(label,cx,labelY);
       }
       ctx.font=`${labelBold?'bold ':''}${labelPx}px "${font}", sans-serif`;
       ctx.fillStyle='#000';
-      ctx.fillText(word,cx,labelY);
+      ctx.fillText(label,cx,labelY);
     }
   }
 
