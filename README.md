@@ -1,4 +1,4 @@
-# Reading grid: [bestsiteever.net/reading-grid](https://www.bestsiteever.net/reading-grid)
+# Reading grid: [bestsiteever.net/reading_grid](https://www.bestsiteever.net/reading_grid)
 
 This generator lets parents and teachers create customized literacy posters.
 
